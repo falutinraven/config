@@ -1,0 +1,41 @@
+steps to start linux from scratch (and have a decent neovim config)
+
+1. install Ubuntu (ik not from scratch Arch nerds shut up)
+
+sudo apt update
+
+2. install gcc and g++
+
+sudo apt install build-essential
+
+3. install most up to date neovim from appimage
+
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod u+x nvim.appimage
+./nvim.appimage
+
+./nvim.appimage --appimage-extract
+./squashfs-root/AppRun --version
+
+sudo mv squashfs-root /
+sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
+nvim
+
+3.1 hope that works
+
+4. install xclip to get the clipboard to work
+
+sudo apt-get install xclip
+
+5. install Kickstart #TODO: make this from the one i will eventually fork so that its mine
+
+git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+
+6. make the prompt on my .bashrc profile mine
+
+search PS1=
+replace (after setting color prompt to true by removing a comment from the base .bashrc) the color prompt PS1 with:
+
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+
+7. TBD
